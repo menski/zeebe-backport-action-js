@@ -1,0 +1,12 @@
+name: "Example Backport PR"
+on:
+  issue_comment:
+    types: [created, deleted]
+
+jobs:
+  backport:
+    if: contains(github.event.comment.html_url, '/pull/')
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ./

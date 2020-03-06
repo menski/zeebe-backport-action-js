@@ -1,22 +1,10 @@
 const core = require('@actions/core');
-const wait = require('./wait');
+const github = require('@actions/github');
 
-
-// most @actions toolkit packages have async methods
 async function run() {
-  try { 
-    const ms = core.getInput('milliseconds');
-    console.log(`Waiting ${ms} milliseconds ...`)
-
-    core.debug((new Date()).toTimeString())
-    await wait(parseInt(ms));
-    core.debug((new Date()).toTimeString())
-
-    core.setOutput('time', new Date().toTimeString());
-  } 
-  catch (error) {
-    core.setFailed(error.message);
-  }
+  const payload = JSON.stringify(github.context.payload, undefined, 2)
+  core.debug(`The event name: ${github.context.eventName}`)
+  core.debug(`The event payload: ${payload}`);
 }
 
-run()
+run().catch(error => core.setFailed(error.message));
