@@ -9,7 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: backport
-      env:
-        ACTIONS_STEP_DEBUG: true
-      uses: ./
+    - uses: ./
