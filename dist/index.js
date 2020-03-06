@@ -494,7 +494,9 @@ const github = __webpack_require__(469);
 async function run() {
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   core.debug(`The event name: ${github.context.eventName}`)
-  core.debug(`The event payload: ${payload}`);
+  core.warning(`The event payload: ${payload}`);
+  core.debug(`The event name: ${github.context.eventName}`)
+  core.warning(`The event payload: ${payload}`);
 }
 
 run().catch(error => core.setFailed(error.message));
